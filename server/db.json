@@ -1,0 +1,57 @@
+{
+  "users": [
+    {
+      "email": "rid1@gmail.com",
+      "password": "$2a$10$TFsJGTUcVCVwujCqws3ZU.J5r7EbFlKC6vQu6vLlz84NqwFjXIkUO",
+      "name": "rid1",
+      "id": 1
+    },
+    {
+      "email": "rid2@gmail.com",
+      "password": "$2a$10$TFsJGTUcVCVwujCqws3ZU.J5r7EbFlKC6vQu6vLlz84NqwFjXIkUO",
+      "name": "rid2",
+      "id": 2
+    },
+    {
+      "email": "rid3@gmail.com",
+      "password": "$2a$10$TFsJGTUcVCVwujCqws3ZU.J5r7EbFlKC6vQu6vLlz84NqwFjXIkUO",
+      "name": "rid3",
+      "id": 3
+    },
+    {
+      "email": "rid4@gmail.com",
+      "password": "$2a$10$TFsJGTUcVCVwujCqws3ZU.J5r7EbFlKC6vQu6vLlz84NqwFjXIkUO",
+      "name": "rid4",
+      "id": 4
+    },
+    {
+      "email": "rid5@gmail.com",
+      "password": "$2a$10$TFsJGTUcVCVwujCqws3ZU.J5r7EbFlKC6vQu6vLlz84NqwFjXIkUO",
+      "name": "rid5",
+      "id": 5
+    },
+    {
+      "email": "rid6@gmail.com",
+      "password": "$2a$10$TFsJGTUcVCVwujCqws3ZU.J5r7EbFlKC6vQu6vLlz84NqwFjXIkUO",
+      "name": "rid6",
+      "id": 6
+    }
+  ],
+  "teams": [
+    {
+      "name": "Falcon team",
+      "members": [
+        {
+          "email": "rid1@gmail.com",
+          "name": "rid1",
+          "id": 1
+        }
+      ],
+      "description": "dolor description test",
+      "timestamp": 1663581066996,
+      "id": 1,
+      "color": "#d64444"
+    }
+  ],
+  "projects": []
+}
