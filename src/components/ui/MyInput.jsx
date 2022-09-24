@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const MyInput = ({ label, required, setValue, placeholder, value, type }) => {
   return (
-    <div>
+    <div className="my-2">
       <label htmlFor="address" className="text-gray-500 mb-2">
         {label} :
       </label>
