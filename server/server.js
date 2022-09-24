@@ -10,8 +10,16 @@ const router = jsonServer.router("db.json");
 
 // response middleware
 router.render = (req, res) => {
-  // const path = req.path;
-  // const method = req.method;
+  const email = req.claims.email;
+  const path = req.path;
+  const method = req.method;
+  console.log("email: method: path ", email, method, path);
+  // console.log("method: ", method, path);
+  // if (method === "GET" && path === "/teams" && email) {
+  //   const allData  = res.locals.data;
+
+
+  // }
   res.json(res.locals.data);
 };
 
@@ -32,13 +40,13 @@ app.use(
 );
 app.options("*", cors());
 
-// const rules = auth.rewriter({
-//   users: 640,
-//   conversations: 660,
-//   messages: 660,
-// });
+const rules = auth.rewriter({
+  users: 640,
+  teams: 660,
+  projects: 660,
+});
 
-// app.use(rules);
+app.use(rules);
 app.use(auth);
 app.use(router);
 

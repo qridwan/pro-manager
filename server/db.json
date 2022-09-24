@@ -40,44 +40,20 @@
   "teams": [
     {
       "name": "Falcon team",
-      "members": [
-        {
-          "email": "rid1@gmail.com",
-          "name": "rid1",
-          "id": 1
-        }
-      ],
-      "description": "dolor description test",
-      "timestamp": 1663581066996,
+      "members": [ "rid3@gmail.com", "rid4@gmail.com", "rid5@gmail.com" ],
+      "description": "dolor test 2",
+      "timestamp": 1663581066002,
       "id": 1,
       "color": "#d64444"
     },
     {
-      "name": " team",
+      "name": "team2",
       "members": [
-        {
-          "email": "rid3@gmail.com",
-          "name": "rid1",
-          "id": 3
-        }
+        "rid1@gmail.com"
       ],
-      "description": "dolor description test",
-      "timestamp": 1663581066976,
+      "description": "dolor description test 2",
+      "timestamp": 1663581066000,
       "id": 2,
-      "color": "#d64444"
-    },
-    {
-      "name": "Dalcon team",
-      "members": [
-        {
-          "email": "rid6@gmail.com",
-          "name": "rid1",
-          "id": 1
-        }
-      ],
-      "description": "dolor description test",
-      "timestamp": 1663581066999,
-      "id": 3,
       "color": "#d64444"
     }
   ],
