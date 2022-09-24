@@ -2,9 +2,27 @@ import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment } from "react";
 import { useState } from "react";
 import MyInput from "../ui/MyInput";
+import MyTextArea from "../ui/MyTextArea";
 
 const AddTeam = ({ isOpen, closeModal }) => {
   const [team, setTeam] = useState("");
+  const [description, setDescription] = useState("");
+  const defaultColor = "#232323";
+  const [color, setColor] = useState(defaultColor);
+
+  const reset = () => {
+    setTeam("");
+    setDescription("");
+    setColor(defaultColor);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (team && description && color) {
+      closeModal();
+      reset();
+    }
+  };
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -39,27 +57,52 @@ const AddTeam = ({ isOpen, closeModal }) => {
                 >
                   Add New Team
                 </Dialog.Title>
-                <div className="mt-2">
+                <form onSubmit={handleSubmit} className="mt-2">
                   <MyInput
                     label="Team Name"
                     id="team_name"
                     placeholder="Backend team"
                     value={team}
                     setValue={setTeam}
-                    required
+                    required={true}
                     type="text"
                   />
-                </div>
-
-                <div className="mt-4">
-                  <button
-                    type="button"
-                    className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    onClick={closeModal}
-                  >
-                    Add
-                  </button>
-                </div>
+                  <MyTextArea
+                    label="Description"
+                    id="team_name"
+                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
+                    placeholder="Team Description"
+                    value={description}
+                    setValue={setDescription}
+                    required={true}
+                    type="text"
+                  />
+                  <div>
+                    <MyInput
+                      label="Team Color"
+                      id="team_name"
+                      placeholder="Select Your Team Color"
+                      value={color}
+                      setValue={setColor}
+                      required={true}
+                      type="color"
+                    />
+                    <div className="flex justify-end">
+                      <div
+                        style={{ background: color }}
+                        className={`w-6 h-6`}
+                      ></div>
+                    </div>
+                  </div>
+                  <div className="mt-4">
+                    <button
+                      type="submit"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    >
+                      Add
+                    </button>
+                  </div>
+                </form>
               </Dialog.Panel>
             </Transition.Child>
           </div>
