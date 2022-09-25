@@ -1,14 +1,21 @@
 import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment } from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useAddTeamMutation } from "../../features/teams/teamsAPI";
 import MyInput from "../ui/MyInput";
 import MyTextArea from "../ui/MyTextArea";
 
 const AddTeam = ({ isOpen, closeModal }) => {
+  const auth = useSelector((state) => state.auth) || {};
+  const { user } = auth || {};
+  const { email } = user || {};
   const [team, setTeam] = useState("");
   const [description, setDescription] = useState("");
   const defaultColor = "#232323";
   const [color, setColor] = useState(defaultColor);
+  const [addTeam, { data: Updatedteam, isLoading, isError }] =
+    useAddTeamMutation();
 
   const reset = () => {
     setTeam("");
@@ -19,6 +26,16 @@ const AddTeam = ({ isOpen, closeModal }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (team && description && color) {
+      addTeam({
+        sender: user,
+        data: {
+          name: team,
+          members: [email],
+          description,
+          timestamp: Date.now(),
+          color,
+        },
+      });
       closeModal();
       reset();
     }

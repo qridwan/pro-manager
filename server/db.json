@@ -40,7 +40,11 @@
   "teams": [
     {
       "name": "Falcon team",
-      "members": [ "rid3@gmail.com", "rid4@gmail.com", "rid5@gmail.com" ],
+      "members": [
+        "rid3@gmail.com",
+        "rid4@gmail.com",
+        "rid5@gmail.com"
+      ],
       "description": "dolor test 2",
       "timestamp": 1663581066002,
       "id": 1,
@@ -55,9 +59,68 @@
       "timestamp": 1663581066000,
       "id": 2,
       "color": "#d64444"
+    },
+    {
+      "name": "Future",
+      "members": [
+        null
+      ],
+      "description": "Big Plan",
+      "timestamp": 1664060141426,
+      "color": "#ff0505",
+      "id": 3
+    },
+    {
+      "name": "ss",
+      "members": [
+        null
+      ],
+      "description": "ss",
+      "timestamp": 1664060165866,
+      "color": "#ff0000",
+      "id": 4
+    },
+    {
+      "name": "sdfa",
+      "members": [
+        "rid1@gmail.com"
+      ],
+      "description": "sadfafsd",
+      "timestamp": 1664060457752,
+      "color": "#f50000",
+      "id": 5
+    },
+    {
+      "name": "sss",
+      "members": [
+        "rid1@gmail.com"
+      ],
+      "description": "sss",
+      "timestamp": 1664060563401,
+      "color": "#c10b0b",
+      "id": 6
+    },
+    {
+      "name": "sss",
+      "members": [
+        "rid1@gmail.com"
+      ],
+      "description": "fsda",
+      "timestamp": 1664060846619,
+      "color": "#ff0000",
+      "id": 7
+    },
+    {
+      "name": "dsfa",
+      "members": [
+        "rid1@gmail.com"
+      ],
+      "description": "sadfas",
+      "timestamp": 1664060864178,
+      "color": "#ff8080",
+      "id": 8
     }
   ],
-  
   "projects": [{
     "id": 1,
     "team": "team1",
