@@ -27,7 +27,31 @@ export const teamsApi = apiSlice.injectEndpoints({
           // when add new converstation draft will be update
           dispatch(
             apiSlice.util.updateQueryData("getTeams", arg.sender, (draft) => {
-              draft.unshift(team);
+              draft.push(team.data);
+            })
+          );
+        }
+      },
+    }),
+    getQueryTeams: builder.query({
+      query: (team) => `/teams?uid=${team.toLowerCase()}`,
+    }),
+    addNewTeamMember: builder.mutation({
+      query: ({ id, data, sender }) => ({
+        url: `/teams/${id}`,
+        method: "PATCH",
+        body: data, // {members: ["", "", ""]}
+      }),
+      async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+        const updatedTeam = await queryFulfilled;
+        if (updatedTeam?.data.id) {
+          // when add new member, draft will be update
+          dispatch(
+            apiSlice.util.updateQueryData("getTeams", arg.sender, (draft) => {
+              const filterDraftedTeams = draft.filter(
+                (t) => t.id !== updatedTeam.data.id
+              );
+              return [...filterDraftedTeams, updatedTeam.data];
             })
           );
         }
@@ -36,4 +60,9 @@ export const teamsApi = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetTeamsQuery, useAddTeamMutation } = teamsApi;
+export const {
+  useGetTeamsQuery,
+  useAddTeamMutation,
+  useGetQueryTeamsQuery,
+  useAddNewTeamMemberMutation
+} = teamsApi;

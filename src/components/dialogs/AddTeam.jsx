@@ -2,7 +2,11 @@ import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useAddTeamMutation } from "../../features/teams/teamsAPI";
+import {
+  useAddTeamMutation,
+  useGetQueryTeamsQuery,
+} from "../../features/teams/teamsAPI";
+import Error from "../ui/Error";
 import MyInput from "../ui/MyInput";
 import MyTextArea from "../ui/MyTextArea";
 
@@ -11,11 +15,15 @@ const AddTeam = ({ isOpen, closeModal }) => {
   const { user } = auth || {};
   const { email } = user || {};
   const [team, setTeam] = useState("");
+  const [teamCheck, setTeamCheck] = useState(false);
   const [description, setDescription] = useState("");
   const defaultColor = "#232323";
   const [color, setColor] = useState(defaultColor);
   const [addTeam, { data: Updatedteam, isLoading, isError }] =
     useAddTeamMutation();
+  const { data: queryTeamData } = useGetQueryTeamsQuery(team, {
+    skip: !teamCheck,
+  });
 
   const reset = () => {
     setTeam("");
@@ -23,13 +31,32 @@ const AddTeam = ({ isOpen, closeModal }) => {
     setColor(defaultColor);
   };
 
+  const debounceHandler = (fn, delay) => {
+    let timeoutId;
+    return (...args) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        fn(...args);
+      }, delay);
+    };
+  };
+  const doTeamQuery = (value) => {
+    setTeamCheck(true);
+    setTeam(value);
+  };
+
+  const handleQueryTeam = debounceHandler(doTeamQuery, 800);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (team && description && color) {
+    queryTeamData;
+    console.log("queryTeamData: ", queryTeamData, team);
+    if (team && description && color && queryTeamData.length === 0) {
       addTeam({
-        sender: user,
+        sender: email,
         data: {
           name: team,
+          uid: team.toLowerCase(),
           members: [email],
           description,
           timestamp: Date.now(),
@@ -79,8 +106,8 @@ const AddTeam = ({ isOpen, closeModal }) => {
                     label="Team Name"
                     id="team_name"
                     placeholder="Backend team"
-                    value={team}
-                    setValue={setTeam}
+                    // value={team}
+                    setValue={handleQueryTeam}
                     required={true}
                     type="text"
                   />
@@ -112,12 +139,17 @@ const AddTeam = ({ isOpen, closeModal }) => {
                     </div>
                   </div>
                   <div className="mt-4">
-                    <button
-                      type="submit"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    >
-                      Add
-                    </button>
+                    {queryTeamData?.length > 0 ? (
+                      <Error message="Team already exist!" />
+                    ) : (
+                      <button
+                        disabled={Boolean(queryTeamData?.length > 0)}
+                        type="submit"
+                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:bg-white disabled:text-gray-500"
+                      >
+                        Add
+                      </button>
+                    )}
                   </div>
                 </form>
               </Dialog.Panel>
