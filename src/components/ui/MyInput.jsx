@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const MyInput = ({ label, required, setValue, placeholder, value, type }) => {
+const MyInput = ({ label, required, setValue, placeholder, value, type, disabled }) => {
   return (
     <div className="my-2">
-      <label htmlFor="address" className="text-gray-500 mb-2">
-        {label} :
-      </label>
+      {label && (
+        <label htmlFor="address" className="text-gray-500 mb-2">
+          {label} :
+        </label>
+      )}
       <input
         type={type ?? "text"}
         autoComplete="email"
@@ -15,6 +17,7 @@ const MyInput = ({ label, required, setValue, placeholder, value, type }) => {
         placeholder={placeholder}
         value={value}
         onChange={(e) => setValue(e.target.value)}
+        disabled={disabled}
       />
     </div>
   );
