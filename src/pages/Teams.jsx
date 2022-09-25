@@ -16,14 +16,7 @@ const Teams = () => {
     isLoading,
     isSuccess,
   } = useGetTeamsQuery(email);
-  console.log("teams: ", teams);
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  function openModal() {
-    setIsOpen(true);
-  }
+  
   let content;
   if (isLoading && !isSuccess && !isError) {
     content = "Contents loading...";
@@ -33,6 +26,13 @@ const Teams = () => {
     content = "Something went wrong";
   } else if (!isError && !isLoading && teams.length == 0) {
     content = "No teams found";
+  }
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModal() {
+    setIsOpen(true);
   }
   return (
     <div>

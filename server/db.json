@@ -121,5 +121,13 @@
       "id": 8
     }
   ],
-  "projects": []
+  "projects": [{
+    "id": 1,
+    "team": "team1",
+    "title": "dolor test 1",
+    "timestamp": 1663581066002,
+    "author": "rid1@gmail.com",
+    "color": "#d64444"
+  }
+]
 }

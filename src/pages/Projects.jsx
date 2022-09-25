@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../assets/logo/logo.svg";
+import AddProject from "../components/dialogs/AddProject";
 const Projects = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModal() {
+    setIsOpen(true);
+  }
   return (
     <div>
       <div className="px-10 mt-6">
@@ -13,7 +22,10 @@ const Projects = () => {
             <span className="flex items-center justify-center w-5 h-5 ml-2 text-sm font-semibold text-indigo-500 bg-white rounded bg-opacity-30">
               6
             </span>
-            <button className="flex items-center justify-center w-6 h-6 ml-auto text-indigo-500 rounded hover:bg-indigo-500 hover:text-indigo-100">
+            <button
+              className="flex items-center justify-center w-6 h-6 ml-auto text-indigo-500 rounded hover:bg-indigo-500 hover:text-indigo-100"
+              onClick={openModal}
+            >
               <svg
                 className="w-5 h-5"
                 fill="none"
@@ -28,6 +40,7 @@ const Projects = () => {
                 ></path>
               </svg>
             </button>
+            <AddProject closeModal={closeModal} isOpen={isOpen} />
           </div>
           <div className="flex flex-col pb-2 overflow-auto">
             <div
