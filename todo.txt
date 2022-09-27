@@ -11,12 +11,17 @@
 ==> Done 
 
 1.5) এরপরের পেইজ হল projects.html পেইজ যেখানে projects গুলো (শুধু যেগুলোতে logged in user assigned) কার্ড আকারে latest first sort হয়ে দেখাবে ঠিক যেভাবে projects.html page এ দেখানো হয়েছে। শুরুতে projects page এ কিচ্ছু থাকবেনা। কিন্তু উপরের সেকশন গুলো থাকবে যেমন - "Backlog", "Ready", "Doing", "Review", "Blocked" and "Done". এই state গুলো পরিবর্তন করার দরকার নেই। এই state গুলো static.
+==> DONE
 
 1.6) শুধুমাত্র "Backlog" section এর উপরে একটি plus icon আছে। এখান থেকে ঐ টিমের প্রজেক্ট add করা যাবে একটি মোডালের মাধ্যমে। তারমানে প্রথমে created প্রজেক্ট default ভাবে Backlog stage এ থাকবে। প্রজেক্ট add করার মোডালে প্রজেক্টের একটি টাইটেল, সেটা কবে create করা হয়েছে সেই date, project টি কোন টিমের under এ আছে সেটি এবং কে ক্রিয়েট করেছেন সেই তথ্য থাকবে।
+==>DONE
 
 1.7) project card এ তথ্য দেখানোর সময় colored ছোট বক্স গুলোতে ঐ প্রজেক্ট এর "team" এর নাম (ঐ team এর color অনুযায়ী বক্স এর কালার হবে), project title, created date এবং যিনি ক্রিয়েট করেছেন তার একটি ছবি দেখাবে যেভাবে UI তে দেখানো হয়েছে।
+===> Done
+
 
 1.8) শুধুমাত্র backlog stage এ যে প্রজেক্ট গুলো থাকবে, সেগুলোকে delete করা যাবে। এজন্য UI তে backlog stage এর প্রথম project card এর উপর মাউস নিলে right side এ আপনারা একটি option icon দেখতে পাবেন। সেটি ব্যবহার করতে পারেন। শুধুমাত্র project এর creator শুধু delete করতে পারবেন।
+
 
 1.9) backlog stage থেকে যেকোন project কে drag করে অন্য যেকোন stage এ নেয়া যাবে এবং এটি server এর সাথে sync থাকতে হবে মানে reload দিলে যেন project টি সঠিক stage এ থাকে। Drag and Drop এর ফিচার implement করার জন্য আপনারা React DnD package ব্যবহার করতে পারেন।
 

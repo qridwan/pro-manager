@@ -23,7 +23,7 @@ const TeamList = ({ teams }) => {
         .map((team) => {
           const date = moment(team.timestamp).format("MMM Do YY");
           // console.log(`bg-[${team.color}]`);
-          const color = `bg-[${team.color}]`;
+          const color = team.color;
           return (
             <div
               key={team.id}
@@ -53,9 +53,12 @@ const TeamList = ({ teams }) => {
 
               <span
                 className={classNames(
-                  "flex items-center h-6 px-3 text-xs font-semibold rounded-full",
-                  team.color ? `bg-[#${team.color}]` : ""
+                  "flex items-center h-6 px-3 text-xs font-semibold rounded-full"
                 )}
+                style={{
+                  backgroundColor: color + 20,
+                  color: color,
+                }}
               >
                 {team.name}
               </span>

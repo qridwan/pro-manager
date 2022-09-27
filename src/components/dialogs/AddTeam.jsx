@@ -19,8 +19,7 @@ const AddTeam = ({ isOpen, closeModal }) => {
   const [description, setDescription] = useState("");
   const defaultColor = "#232323";
   const [color, setColor] = useState(defaultColor);
-  const [addTeam, { data: Updatedteam, isLoading, isError }] =
-    useAddTeamMutation();
+  const [addTeam, { isLoading, isError }] = useAddTeamMutation();
   const { data: queryTeamData } = useGetQueryTeamsQuery(team, {
     skip: !teamCheck,
   });

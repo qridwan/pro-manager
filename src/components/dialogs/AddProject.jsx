@@ -1,26 +1,70 @@
 import { Dialog, Transition } from "@headlessui/react";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import {
+  useAddProjectMutation,
+  useGetProjectsQuery,
+} from "../../features/projects/projectsApi";
+import { useGetTeamsQuery } from "../../features/teams/teamsAPI";
+import Error from "../ui/Error";
 import MyInput from "../ui/MyInput";
 import MyTextArea from "../ui/MyTextArea";
+import SelectTeamAutoComplete from "../ui/SelectTeamAutoComplete";
 
 const AddProject = ({ isOpen, closeModal }) => {
   const [team, setTeam] = useState("");
   const [title, setTitle] = useState("");
+  const auth = useSelector((state) => state.auth) || {};
+  const {
+    user: { email },
+  } = auth || {};
+  const { data: myTeams } = useGetTeamsQuery(email);
+  const [addProject, { isLoading, isSuccess, isError, error }] =
+    useAddProjectMutation();
+  const [teamsSuggestion, setTeamsSuggestion] = useState([]);
+  const [selected, setSelected] = useState({});
 
-  const reset = () => {
-    setTeam("");
-    setTitle("");
-  };
-
-  const handleSubmit = (e) => {
-    console.log({ team, title });
-    e.preventDefault();
-    if (team && title) {
+  useEffect(() => {
+    reset();
+    if (myTeams?.length > 0) {
+      setTeamsSuggestion(myTeams);
+      setSelected(myTeams[0]);
+    } else {
+      reset();
+    }
+  }, [myTeams, isOpen]);
+  useEffect(() => {
+    if (isSuccess) {
       closeModal();
       reset();
     }
+  }, [isLoading]);
+
+  const reset = () => {
+    setTitle("");
+    setSelected("");
+    setTeamsSuggestion([]);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (selected && title) {
+      const dataModel = {
+        author: email,
+        color: selected.color,
+        teamId: selected.uid,
+        title: title,
+        timestamp: Date.now(),
+        members: [...selected.members],
+        name: selected.name,
+      };
+      addProject({ sender: email, data: dataModel });
+    }
+  };
+
+  //function
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -47,7 +91,7 @@ const AddProject = ({ isOpen, closeModal }) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-full max-w-md transform overflowY-auto rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all z-10">
                 <Dialog.Title
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
@@ -56,7 +100,7 @@ const AddProject = ({ isOpen, closeModal }) => {
                 </Dialog.Title>
 
                 <form onSubmit={handleSubmit} className="mt-2">
-                  <MyInput
+                  {/* <MyInput
                     label="Team Name"
                     id="team_name"
                     placeholder="Your Team Name"
@@ -64,6 +108,12 @@ const AddProject = ({ isOpen, closeModal }) => {
                     setValue={setTeam}
                     required={true}
                     type="text"
+                  /> */}
+                  <SelectTeamAutoComplete
+                    selected={selected}
+                    label="Choose a team"
+                    setSelected={setSelected}
+                    suggestions={teamsSuggestion}
                   />
                   <MyTextArea
                     label="To-Dos"
@@ -82,6 +132,7 @@ const AddProject = ({ isOpen, closeModal }) => {
                       Add
                     </button>
                   </div>
+                  {isError && <Error message={error} />}
                 </form>
               </Dialog.Panel>
             </Transition.Child>

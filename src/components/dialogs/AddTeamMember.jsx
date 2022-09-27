@@ -4,18 +4,10 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useAddNewTeamMemberMutation } from "../../features/teams/teamsAPI";
 import { useGetUserQuery } from "../../features/users/usersApi";
-
 import Error from "../ui/Error";
 import MyInput from "../ui/MyInput";
 import SelectMemberAutoComplete from "../ui/SelectMemberAutoComplete";
-const people = [
-  { id: 1, name: "Wade Cooper" },
-  { id: 2, name: "Arlene Mccoy" },
-  { id: 3, name: "Devon Webb" },
-  { id: 4, name: "Tom Cook" },
-  { id: 5, name: "Tanya Fox" },
-  { id: 6, name: "Hellen Schmidt" },
-];
+
 const AddTeamMember = ({ isOpen, closeOpen, team }) => {
   const auth = useSelector((state) => state.auth) || {};
   const { user } = auth || {};
