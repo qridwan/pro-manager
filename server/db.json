@@ -1,0 +1,132 @@
+{
+  "users": [
+    {
+      "email": "rid1@gmail.com",
+      "password": "$2a$10$TFsJGTUcVCVwujCqws3ZU.J5r7EbFlKC6vQu6vLlz84NqwFjXIkUO",
+      "name": "rid1",
+      "id": 1
+    },
+    {
+      "email": "rid2@gmail.com",
+      "password": "$2a$10$TFsJGTUcVCVwujCqws3ZU.J5r7EbFlKC6vQu6vLlz84NqwFjXIkUO",
+      "name": "rid2",
+      "id": 2
+    },
+    {
+      "email": "rid3@gmail.com",
+      "password": "$2a$10$TFsJGTUcVCVwujCqws3ZU.J5r7EbFlKC6vQu6vLlz84NqwFjXIkUO",
+      "name": "rid3",
+      "id": 3
+    },
+    {
+      "email": "rid4@gmail.com",
+      "password": "$2a$10$TFsJGTUcVCVwujCqws3ZU.J5r7EbFlKC6vQu6vLlz84NqwFjXIkUO",
+      "name": "rid4",
+      "id": 4
+    },
+    {
+      "email": "rid5@gmail.com",
+      "password": "$2a$10$TFsJGTUcVCVwujCqws3ZU.J5r7EbFlKC6vQu6vLlz84NqwFjXIkUO",
+      "name": "rid5",
+      "id": 5
+    },
+    {
+      "email": "rid6@gmail.com",
+      "password": "$2a$10$TFsJGTUcVCVwujCqws3ZU.J5r7EbFlKC6vQu6vLlz84NqwFjXIkUO",
+      "name": "rid6",
+      "id": 6
+    }
+  ],
+  "teams": [
+    {
+      "name": "Falcon team",
+      "uid": "falcon team",
+      "members": [
+        "rid3@gmail.com",
+        "rid4@gmail.com",
+        "rid5@gmail.com"
+      ],
+      "description": "dolor test 2",
+      "timestamp": 1663581066002,
+      "id": 1,
+      "color": "#d64444"
+    },
+    {
+      "name": "team2 team",
+      "uid": "team2 team",
+      "members": [
+        "rid1@gmail.com",
+        "rid6@gmail.com",
+        "rid4@gmail.com",
+        "rid2@gmail.com",
+        "rid5@gmail.com"
+      ],
+      "description": "dolor description test 2",
+      "timestamp": 1663581066000,
+      "id": 2,
+      "color": "#d64444"
+    },
+    {
+      "name": "Design",
+      "uid": "design",
+      "members": [
+        "rid1@gmail.com",
+        "rid5@gmail.com",
+        "rid3@gmail.com",
+        "rid6@gmail.com"
+      ],
+      "description": "This is design description",
+      "timestamp": 1664086737781,
+      "color": "#8ff0a4",
+      "id": 9
+    },
+    {
+      "name": "Oxy team",
+      "uid": "oxy team",
+      "members": [
+        "rid1@gmail.com",
+        "rid4@gmail.com",
+        "rid5@gmail.com"
+      ],
+      "description": "oxy team description",
+      "timestamp": 1664131896333,
+      "color": "#dc8add",
+      "id": 10
+    },
+    {
+      "name": "New Team",
+      "uid": "new team",
+      "members": [
+        "rid1@gmail.com",
+        "rid5@gmail.com"
+      ],
+      "description": "Frontend guys",
+      "timestamp": 1664139467841,
+      "color": "#a51d2d",
+      "id": 11
+    },
+    {
+      "name": "zyd",
+      "uid": "zyd",
+      "members": [
+        "rid1@gmail.com"
+      ],
+      "description": "sdf adf fsa",
+      "timestamp": 1664139711792,
+      "color": "#c061cb",
+      "id": 12
+    },
+    {
+      "name": "sdf",
+      "uid": "sdf",
+      "members": [
+        "rid1@gmail.com"
+      ],
+      "description": "aaa",
+      "timestamp": 1664139721286,
+      "color": "#e5a50a",
+      "id": 13
+    }
+  ],
+  "projects": []
+}
