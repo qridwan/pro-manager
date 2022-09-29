@@ -21,14 +21,21 @@
 
 
 1.8) শুধুমাত্র backlog stage এ যে প্রজেক্ট গুলো থাকবে, সেগুলোকে delete করা যাবে। এজন্য UI তে backlog stage এর প্রথম project card এর উপর মাউস নিলে right side এ আপনারা একটি option icon দেখতে পাবেন। সেটি ব্যবহার করতে পারেন। শুধুমাত্র project এর creator শুধু delete করতে পারবেন।
-
+===> DONE
 
 1.9) backlog stage থেকে যেকোন project কে drag করে অন্য যেকোন stage এ নেয়া যাবে এবং এটি server এর সাথে sync থাকতে হবে মানে reload দিলে যেন project টি সঠিক stage এ থাকে। Drag and Drop এর ফিচার implement করার জন্য আপনারা React DnD package ব্যবহার করতে পারেন।
+===> DONE
+
 
 1.10) অন্য যেকোন stage থেকে যেকোন প্রজেক্ট কে backlog stage এ আনা যাবে। সব কিছুই সার্ভার এর সাথে sync থাকতে হবে।
+==> DONE
+
 
 1.11) প্রতিটি stage এ কয়টি করে প্রজেক্ট আছে সেই count টি stage এর নামের পাশে দেখাতে হবে ঠিক যেভাবে UI তে দেখানো হয়েছে।
+==>> DONE
 
 1.12) ফাইনালি শুধু প্রজেক্ট পেইজে একদম navigation bar এ থাকা search box ব্যবহার করে projects এর title দিয়ে সার্চ করতে পারতে হবে। সার্চটি ক্লায়েন্ট সাইড বা সার্ভার যেটি আপনারা উপযুক্ত মনে করেন সেটি ব্যবহার করে ফাংশনাল করতে পারেন। search এ যে যে project result এ আসবে, সেগুলোকে UI তে ঐ ঐ project card কে হাইলাইট করে দিতে হবে। হতে পারে card এর চারপাশে একটি border দিয়ে অথবা হাল্কা animation or blink করে। এক্ষেত্রে tailwind এর animate class ব্যবহার করতে পারেন। search implement করার সময় আপনারা debounce technique use করতে পারেন যদি চান।
+===> DONE
 
 1.13) পুরো প্রজেক্ট এর সব state সার্ভার এর সাথে sync থাকতে হবে যেন যেকোন সময় reload দিলে কাজ করে।
+===>DONE

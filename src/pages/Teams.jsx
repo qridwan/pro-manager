@@ -1,12 +1,14 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import AddTeam from "../components/dialogs/AddTeam";
 import TeamList from "../components/teams/TeamList";
+import { clearSearchedData } from "../features/projects/projectSlice";
 import { useGetTeamsQuery } from "../features/teams/teamsAPI";
 
 const Teams = () => {
   const [isOpen, setIsOpen] = useState(false);
   const auth = useSelector((state) => state.auth) || {};
+  const dispatch = useDispatch();
   const {
     user: { email },
   } = auth || {};
@@ -16,7 +18,9 @@ const Teams = () => {
     isLoading,
     isSuccess,
   } = useGetTeamsQuery(email);
-  
+  useEffect(() => {
+    dispatch(clearSearchedData());
+  }, []);
   let content;
   if (isLoading && !isSuccess && !isError) {
     content = "Contents loading...";
@@ -60,7 +64,7 @@ const Teams = () => {
         </button>
         <AddTeam isOpen={isOpen} closeModal={closeModal} />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 px-10 mt-4 gap-6 overflow-auto">
+      <div className="grid grid-flow-row grid-cols-1 md:grid-cols-3 lg:grid-cols-4 px-10 mt-4 gap-6 overflow-auto">
         {content}
       </div>
     </div>

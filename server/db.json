@@ -128,5 +128,54 @@
       "id": 13
     }
   ],
-  "projects": []
+  "projects": [
+    {
+      "author": "rid1@gmail.com",
+      "color": "#8ff0a4",
+      "teamId": "design",
+      "title": "Try designing figma\n",
+      "timestamp": 1664480980474,
+      "members": [
+        "rid1@gmail.com",
+        "rid5@gmail.com",
+        "rid3@gmail.com",
+        "rid6@gmail.com"
+      ],
+      "name": "Design",
+      "status": "blocked",
+      "id": 1
+    },
+    {
+      "author": "rid1@gmail.com",
+      "color": "#dc8add",
+      "teamId": "oxy team",
+      "title": "Oxy team design",
+      "timestamp": 1664480999336,
+      "members": [
+        "rid1@gmail.com",
+        "rid4@gmail.com",
+        "rid5@gmail.com"
+      ],
+      "name": "Oxy team",
+      "status": "backlog",
+      "id": 2
+    },
+    {
+      "author": "rid1@gmail.com",
+      "color": "#d64444",
+      "teamId": "team2 team",
+      "title": "This is design task",
+      "timestamp": 1664481012873,
+      "members": [
+        "rid1@gmail.com",
+        "rid6@gmail.com",
+        "rid4@gmail.com",
+        "rid2@gmail.com",
+        "rid5@gmail.com"
+      ],
+      "name": "team2 team",
+      "status": "ready",
+      "id": 3
+    }
+  ]
 }

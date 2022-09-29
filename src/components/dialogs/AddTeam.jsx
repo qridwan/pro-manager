@@ -6,6 +6,7 @@ import {
   useAddTeamMutation,
   useGetQueryTeamsQuery,
 } from "../../features/teams/teamsAPI";
+import { debounceHandler } from "../../utils/debounceHandler";
 import Error from "../ui/Error";
 import MyInput from "../ui/MyInput";
 import MyTextArea from "../ui/MyTextArea";
@@ -30,15 +31,7 @@ const AddTeam = ({ isOpen, closeModal }) => {
     setColor(defaultColor);
   };
 
-  const debounceHandler = (fn, delay) => {
-    let timeoutId;
-    return (...args) => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        fn(...args);
-      }, delay);
-    };
-  };
+ 
   const doTeamQuery = (value) => {
     setTeamCheck(true);
     setTeam(value);

@@ -58,6 +58,7 @@ const AddProject = ({ isOpen, closeModal }) => {
         timestamp: Date.now(),
         members: [...selected.members],
         name: selected.name,
+        status: "backlog",
       };
       addProject({ sender: email, data: dataModel });
     }

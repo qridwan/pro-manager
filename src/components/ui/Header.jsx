@@ -1,21 +1,63 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../../assets/logo/logo.svg";
+import { useSearchProjectsQuery } from "../../features/projects/projectsApi";
+import { clearSearchedData } from "../../features/projects/projectSlice";
+import { debounceHandler } from "../../utils/debounceHandler";
 const Header = () => {
+  const auth = useSelector((state) => state.auth) || {};
+  const {
+    user: { email },
+  } = auth || {};
   const location = useLocation();
+  const [title, setTitle] = useState("");
+  const [isSearch, setIsSearch] = useState(false);
+  const dispatch = useDispatch();
   const [isTeam, setIsTeam] = useState(
     Boolean(location?.pathname?.split("/")[2] === "teams")
   );
   useEffect(() => {
     setIsTeam(Boolean(location?.pathname?.split("/")[2] === "teams"));
   }, [location.pathname]);
+
+  const {
+    data: querySearchedData,
+    isLoading,
+    isError,
+    refetch,
+  } = useSearchProjectsQuery(
+    { title, email },
+    {
+      skip: !isSearch,
+    }
+  );
+
+  const reset = () => {
+    setTitle("");
+  };
+
+  const doSearch = (value) => {
+    console.log("value: ", value);
+    if (value) {
+      setIsSearch(true);
+      refetch();
+      setTitle(value);
+    } else {
+      dispatch(clearSearchedData());
+    }
+  };
+
+  const handleQueryTeam = debounceHandler(doSearch, 500);
+
   return (
     <div className="flex items-center flex-shrink-0 w-full h-16 px-10 bg-white bg-opacity-75">
       <img src={Logo} className="h-10 w-10" />
       {!isTeam && (
         <input
+          onChange={(e) => handleQueryTeam(e.target.value)}
           className="flex items-center h-10 px-4 ml-10 text-sm bg-gray-200 rounded-full focus:outline-none focus:ring"
           type="search"
           placeholder="Search for anything…"
