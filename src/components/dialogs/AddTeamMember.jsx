@@ -98,6 +98,7 @@ const AddTeamMember = ({ isOpen, closeOpen, team }) => {
                       id="team_name"
                       placeholder=""
                       value={team?.name}
+                      setValue={null}
                       label="Team Name"
                       disabled
                       type="text"

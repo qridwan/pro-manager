@@ -22,14 +22,18 @@ export const teamsApi = apiSlice.injectEndpoints({
         body: data,
       }),
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-        const team = await queryFulfilled;
-        if (team?.data?.id) {
-          // when add new converstation draft will be update
-          dispatch(
-            apiSlice.util.updateQueryData("getTeams", arg.sender, (draft) => {
-              draft.push(team.data);
-            })
-          );
+        let new_team = arg.data;
+        let disp = dispatch(
+          apiSlice.util.updateQueryData("getTeams", arg.sender, (draft) => {
+            draft.push(new_team);
+          })
+        );
+        try {
+          const team = await queryFulfilled;
+          if (team?.data?.id) {
+          }
+        } catch (error) {
+          disp.undo();
         }
       },
     }),
@@ -43,17 +47,19 @@ export const teamsApi = apiSlice.injectEndpoints({
         body: data, // {members: ["", "", ""]}
       }),
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-        const updatedTeam = await queryFulfilled;
-        if (updatedTeam?.data.id) {
-          // when add new member, draft will be update
-          dispatch(
-            apiSlice.util.updateQueryData("getTeams", arg.sender, (draft) => {
-              const filterDraftedTeams = draft.filter(
-                (t) => t.id !== updatedTeam.data.id
-              );
-              return [...filterDraftedTeams, updatedTeam.data];
-            })
-          );
+        let u_data = arg.data;
+        let func = dispatch(
+          apiSlice.util.updateQueryData("getTeams", arg.sender, (draft) => {
+            const filterDraftedTeams = draft.filter((t) => t.id !== u_data.id);
+            return [...filterDraftedTeams, u_data];
+          })
+        );
+        try {
+          const updatedTeam = await queryFulfilled;
+          if (updatedTeam?.data.id) {
+          }
+        } catch (error) {
+          func.undo();
         }
       },
     }),
@@ -64,5 +70,5 @@ export const {
   useGetTeamsQuery,
   useAddTeamMutation,
   useGetQueryTeamsQuery,
-  useAddNewTeamMemberMutation
+  useAddNewTeamMemberMutation,
 } = teamsApi;

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../../assets/logo/logo.svg";
+import { userLoggedOut } from "../../features/auth/authSlice";
 import { useSearchProjectsQuery } from "../../features/projects/projectsApi";
 import { clearSearchedData } from "../../features/projects/projectSlice";
 import { debounceHandler } from "../../utils/debounceHandler";
@@ -19,6 +20,11 @@ const Header = () => {
   const [isTeam, setIsTeam] = useState(
     Boolean(location?.pathname?.split("/")[2] === "teams")
   );
+
+  const logout = () => {
+    dispatch(userLoggedOut());
+    localStorage.clear();
+  };
   useEffect(() => {
     setIsTeam(Boolean(location?.pathname?.split("/")[2] === "teams"));
   }, [location.pathname]);
@@ -41,6 +47,7 @@ const Header = () => {
 
   const doSearch = (value) => {
     console.log("value: ", value);
+    dispatch(clearSearchedData());
     if (value) {
       setIsSearch(true);
       refetch();
@@ -88,6 +95,12 @@ const Header = () => {
           src="https://assets.codepen.io/5041378/internal/avatars/users/default.png?fit=crop&format=auto&height=512&version=1600304177&width=512"
           alt=""
         />
+      </button>
+      <button
+        className="flex items-center justify-center ml-10 px-2 overflow-hidden cursor-pointer border border-red-300"
+        onClick={logout}
+      >
+        LOGOUT
       </button>
     </div>
   );

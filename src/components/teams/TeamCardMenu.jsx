@@ -16,7 +16,7 @@ const TeamCardMenu = ({ openModel }) => {
         <div className="px-1 py-1 ">
           <Menu.Item>
             {({ active }) => (
-              <button
+              <Menu.Button
                 onClick={openModel}
                 className={`${
                   active ? "bg-blue-500 text-white" : "text-gray-900"
@@ -31,7 +31,7 @@ const TeamCardMenu = ({ openModel }) => {
                   />
                 )}
                 Add member
-              </button>
+              </Menu.Button>
             )}
           </Menu.Item>
         </div>

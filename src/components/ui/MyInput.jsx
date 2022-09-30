@@ -1,7 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const MyInput = ({ label, required, setValue, placeholder, value, type, disabled }) => {
+const MyInput = ({
+  label,
+  required,
+  setValue,
+  placeholder,
+  value,
+  type,
+  disabled,
+}) => {
   return (
     <div className="my-2">
       {label && (
@@ -26,8 +34,8 @@ const MyInput = ({ label, required, setValue, placeholder, value, type, disabled
 MyInput.propTypes = {
   label: PropTypes.string.isRequired,
   required: PropTypes.bool,
-  setValue: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
+  setValue: PropTypes.func,
+  value: PropTypes.string,
   placeholder: PropTypes.string,
 };
 export default MyInput;

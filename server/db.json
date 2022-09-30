@@ -120,52 +120,35 @@
       "name": "sdf",
       "uid": "sdf",
       "members": [
-        "rid1@gmail.com"
+        "rid1@gmail.com",
+        "rid6@gmail.com",
+        "rid4@gmail.com"
       ],
       "description": "aaa",
       "timestamp": 1664139721286,
       "color": "#e5a50a",
       "id": 13
+    },
+    {
+      "name": "rid2",
+      "uid": "rid2",
+      "members": [
+        "rid1@gmail.com",
+        "rid5@gmail.com"
+      ],
+      "description": "ss sdff ",
+      "timestamp": 1664534173149,
+      "color": "#dc8add",
+      "id": 14
     }
   ],
   "projects": [
     {
       "author": "rid1@gmail.com",
-      "color": "#8ff0a4",
-      "teamId": "design",
-      "title": "Try designing figma\n",
-      "timestamp": 1664480980474,
-      "members": [
-        "rid1@gmail.com",
-        "rid5@gmail.com",
-        "rid3@gmail.com",
-        "rid6@gmail.com"
-      ],
-      "name": "Design",
-      "status": "blocked",
-      "id": 1
-    },
-    {
-      "author": "rid1@gmail.com",
-      "color": "#dc8add",
-      "teamId": "oxy team",
-      "title": "Oxy team design",
-      "timestamp": 1664480999336,
-      "members": [
-        "rid1@gmail.com",
-        "rid4@gmail.com",
-        "rid5@gmail.com"
-      ],
-      "name": "Oxy team",
-      "status": "backlog",
-      "id": 2
-    },
-    {
-      "author": "rid1@gmail.com",
       "color": "#d64444",
       "teamId": "team2 team",
-      "title": "This is design task",
-      "timestamp": 1664481012873,
+      "title": "ddd",
+      "timestamp": 1664518416058,
       "members": [
         "rid1@gmail.com",
         "rid6@gmail.com",
@@ -174,8 +157,53 @@
         "rid5@gmail.com"
       ],
       "name": "team2 team",
-      "status": "ready",
+      "status": "doing",
+      "id": 1
+    },
+    {
+      "author": "rid1@gmail.com",
+      "color": "#d64444",
+      "teamId": "team2 team",
+      "title": "twooo",
+      "timestamp": 1664518438753,
+      "members": [
+        "rid1@gmail.com",
+        "rid6@gmail.com",
+        "rid4@gmail.com",
+        "rid2@gmail.com",
+        "rid5@gmail.com"
+      ],
+      "name": "team2 team",
+      "status": "backlog",
+      "id": 2
+    },
+    {
+      "author": "rid1@gmail.com",
+      "color": "#e5a50a",
+      "teamId": "sdf",
+      "title": "dd",
+      "timestamp": 1664518602304,
+      "members": [
+        "rid1@gmail.com"
+      ],
+      "name": "sdf",
+      "status": "backlog",
       "id": 3
+    },
+    {
+      "author": "rid1@gmail.com",
+      "color": "#dc8add",
+      "teamId": "oxy team",
+      "title": "oxy team creation",
+      "timestamp": 1664533766159,
+      "members": [
+        "rid1@gmail.com",
+        "rid4@gmail.com",
+        "rid5@gmail.com"
+      ],
+      "name": "Oxy team",
+      "status": "ready",
+      "id": 4
     }
   ]
 }

@@ -83,7 +83,6 @@ const SelectTeamAutoComplete = ({
 SelectTeamAutoComplete.propTypes = {
   label: PropTypes.string.isRequired,
   suggestions: PropTypes.arrayOf(PropTypes.object).isRequired,
-  selected: PropTypes.bool.isRequired,
   setSelected: PropTypes.func.isRequired,
 };
 export default SelectTeamAutoComplete;

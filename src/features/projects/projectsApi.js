@@ -5,6 +5,7 @@ export const projectsApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getProjects: builder.query({
       query: (email) => `/projects?members_like=${email}`,
+      providesTags: ["projects"],
       async onCacheEntryAdded(
         arg,
         { updateCachedData, cacheDataLoaded, cacheEntryRemoved }
@@ -14,6 +15,7 @@ export const projectsApi = apiSlice.injectEndpoints({
         } catch (err) {}
       },
     }),
+
     searchProjects: builder.query({
       query: ({ email, title }) =>
         `/projects?members_like=${email}&&title_like=${title}`,
@@ -60,45 +62,46 @@ export const projectsApi = apiSlice.injectEndpoints({
         body: data,
       }),
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-        const updatedProject = await queryFulfilled;
-        console.log("updatedProject: ", updatedProject);
-        if (updatedProject.data.id) {
-          // update project from draft when status will patched from dnd
-          dispatch(
-            apiSlice.util.updateQueryData(
-              "getProjects",
-              arg.sender,
-              (draft) => {
-                const filteredProjects = draft.filter(
-                  (project) => project.id != updatedProject?.data?.id
-                );
-                return [...filteredProjects, updatedProject.data];
-              }
-            )
-          );
+        const u_data = arg.data;
+        const pathResult = dispatch(
+          apiSlice.util.updateQueryData("getProjects", arg.sender, (draft) => {
+            const filteredProjects = draft.filter(
+              (project) => project.id != u_data.id
+            );
+            return [...filteredProjects, u_data];
+          })
+        );
+        try {
+          const updatedProject = await queryFulfilled;
+          if (updatedProject.data.id) {
+            // update project from draft when status will patched from dnd
+          }
+        } catch (error) {
+          pathResult.undo();
         }
       },
     }),
     deleteProject: builder.mutation({
       query: ({ sender, id }) => ({
         url: `/projects/${id}`,
-        method: "DELETE",
+        method: "GET", // DELETE method causing issues, it removes all project items
       }),
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-        const projects = await queryFulfilled;
-        console.log("projects: ", projects);
-        // if (projects?.data?.id) {
-        //   // when add new converstation draft will be update
-        //   dispatch(
-        //     apiSlice.util.updateQueryData(
-        //       "getProjects",
-        //       arg.sender,
-        //       (draft) => {
-        //         draft.push(project.data);
-        //       }
-        //     )
-        //   );
-        // }
+        const id = arg.id;
+        const pathResult = dispatch(
+          apiSlice.util.updateQueryData("getProjects", arg.sender, (draft) => {
+            const filteredProjects = draft.filter(
+              (project) => project.id != id
+            );
+            return [...filteredProjects];
+          })
+        );
+        try {
+          const updatedProject = await queryFulfilled;
+          // console.log("updatedProject: ", updatedProject);
+        } catch (error) {
+          pathResult.undo();
+        }
       },
     }),
   }),

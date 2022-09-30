@@ -8,7 +8,6 @@ import {
 } from "../../features/projects/projectsApi";
 import { useGetTeamsQuery } from "../../features/teams/teamsAPI";
 import Error from "../ui/Error";
-import MyInput from "../ui/MyInput";
 import MyTextArea from "../ui/MyTextArea";
 import SelectTeamAutoComplete from "../ui/SelectTeamAutoComplete";
 
@@ -101,15 +100,7 @@ const AddProject = ({ isOpen, closeModal }) => {
                 </Dialog.Title>
 
                 <form onSubmit={handleSubmit} className="mt-2">
-                  {/* <MyInput
-                    label="Team Name"
-                    id="team_name"
-                    placeholder="Your Team Name"
-                    value={team}
-                    setValue={setTeam}
-                    required={true}
-                    type="text"
-                  /> */}
+                 
                   <SelectTeamAutoComplete
                     selected={selected}
                     label="Choose a team"

@@ -31,7 +31,6 @@ const AddTeam = ({ isOpen, closeModal }) => {
     setColor(defaultColor);
   };
 
- 
   const doTeamQuery = (value) => {
     setTeamCheck(true);
     setTeam(value);

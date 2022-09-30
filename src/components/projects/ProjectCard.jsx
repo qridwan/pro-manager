@@ -14,8 +14,12 @@ import { DeleteActiveIcon, DeleteInactiveIcon } from "../teams/TeamCardMenu";
 
 const ProjectCard = ({ project, status }) => {
   const auth = useSelector((state) => state.auth) || {};
-  const [deleteProject] = useDeleteProjectMutation();
+  const date = moment(project.timestamp).format("MMM Do YY");
+  const bgColor = project.color;
   const { data: searchedData } = useSelector((state) => state.searched) || {};
+  const isHighlighted = Boolean(searchedData?.find((p) => p.id === project.id));
+  const [deleteProject] = useDeleteProjectMutation(); //delete project hook
+
   const {
     user: { email },
   } = auth || {};
@@ -44,6 +48,14 @@ const ProjectCard = ({ project, status }) => {
     }),
     [project]
   );
+
+  const handleDelete = (id, author) => {
+    if (author === email) {
+      console.log("id: ", id);
+      deleteProject({ id: id, sender: email });
+    } else null;
+  };
+
   //   useEffect(() => {
   //     if (isSuccess) {
   //       alert("project status updated!");
@@ -56,16 +68,7 @@ const ProjectCard = ({ project, status }) => {
     };
     updateProjectStatus({ data: constructData, sender: email, id: item.id });
   };
-  const handleDelete = (id, author) => {
-    console.log("id, author: ", id, author);
-    if (author === email) {
-      deleteProject({ id: id, sender: email });
-    } else null;
-  };
-  const date = moment(project.timestamp).format("MMM Do YY");
-  const bgColor = project.color;
-  const isHighlighted = Boolean(searchedData?.find((p) => p.id === project.id));
-  console.log("isHighlighted: ", isHighlighted, searchedData);
+
   return (
     <div
       ref={drag}
@@ -80,21 +83,19 @@ const ProjectCard = ({ project, status }) => {
         <div className="absolute right-2 top-1">
           <Menu as="div" className="relative inline-block text-left ">
             <Menu.Button className="flex items-center justify-center hidden w-5 h-5 mt-3 mr-2 text-gray-500 rounded hover:bg-gray-200 hover:text-gray-700 group-hover:flex">
-              <button className="absolute top-0 right-0 flex items-center justify-center hidden w-5 h-5 mt-3 mr-2 text-gray-500 rounded hover:bg-gray-200 hover:text-gray-700 group-hover:flex">
-                <svg
-                  className="w-4 h-4 fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
-                </svg>
-              </button>
+              <svg
+                className="w-4 h-4 fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+              </svg>
             </Menu.Button>
             <Menu.Items className="absolute right-0 mt-2 w-40  origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <Menu.Item>
                 {({ active }) => (
-                  <button
+                  <Menu.Button
                     onClick={() => handleDelete(project.id, project.author)}
                     className={`${
                       active
@@ -114,7 +115,7 @@ const ProjectCard = ({ project, status }) => {
                       />
                     )}
                     Delete
-                  </button>
+                  </Menu.Button>
                 )}
               </Menu.Item>
             </Menu.Items>
@@ -143,7 +144,7 @@ const ProjectCard = ({ project, status }) => {
             <path
               fillRule="evenodd"
               d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             />
           </svg>
           <span className="ml-1 leading-none">{date}</span>
