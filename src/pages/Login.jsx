@@ -42,7 +42,7 @@ const Login = () => {
               <img
                 className="mx-auto h-12 w-auto"
                 src={logoImage}
-                alt="Learn with sumit"
+                alt="thisisrid"
               />
             </Link>
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
