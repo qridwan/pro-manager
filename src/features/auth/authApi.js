@@ -34,7 +34,7 @@ export const authApi = apiSlice.injectEndpoints({
     }),
     login: builder.mutation({
       query: (data) => ({
-        url: "/login",
+        url: "auth/login",
         method: "POST",
         body: data,
       }),
@@ -45,15 +45,15 @@ export const authApi = apiSlice.injectEndpoints({
           localStorage.setItem(
             "auth",
             JSON.stringify({
-              accessToken: result.data.accessToken,
-              user: result.data.user,
+              accessToken: result.data.data.accessToken,
+              user: result.data.data.user,
             })
           );
 
           dispatch(
             userLoggedIn({
-              accessToken: result.data.accessToken,
-              user: result.data.user,
+              accessToken: result.data.data.accessToken,
+              user: result.data.data.user,
             })
           );
         } catch (err) {

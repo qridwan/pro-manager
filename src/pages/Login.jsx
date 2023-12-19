@@ -9,28 +9,27 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const [login, { data, isLoading, error: responseError }] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (responseError?.data) {
-      setError(responseError.data);
-    }
-    if (data?.accessToken && data?.user) {
-      navigate("/home/teams");
-    }
-  }, [data, responseError, navigate]);
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setError("");
 
-    login({
+    const response = await login({
       email,
       password,
     });
+
+    console.log({ response: response.data.data });
+
+    if (response.data.data.accessToken) {
+      navigate("/home/teams");
+    } else if (response.error) {
+      setError(response.error.data.message);
+    }
   };
 
   return (
@@ -102,9 +101,10 @@ const Login = () => {
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
                 disabled={isLoading}
               >
-                Sign in
+                {isLoading ? "Please Wait..." : "Sign in"}
               </button>
             </div>
+            {error !== "" && <Error message={error} />}
             <div>
               <h3 className="text-xl text-center font-bold text-gray-600 py-2">
                 some users cred{" "}
@@ -116,7 +116,7 @@ const Login = () => {
                 </tr>
                 <tr>
                   <td>rid1@gmail.com</td>
-                  <td>asdfasdf</td>
+                  <td>rid1@123</td>
                 </tr>
                 <tr>
                   <td>rid2@gmail.com</td>
@@ -140,8 +140,6 @@ const Login = () => {
                 </tr>
               </table>
             </div>
-
-            {error !== "" && <Error message={error} />}
           </form>
         </div>
       </div>

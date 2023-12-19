@@ -6,7 +6,7 @@ const cors = require("cors");
 const app = express();
 const server = http.createServer(app);
 
-const router = jsonServer.router("db.json");
+const router = jsonServer.router("/db.json");
 
 // response middleware
 router.render = (req, res) => {
@@ -17,7 +17,6 @@ router.render = (req, res) => {
   // console.log("method: ", method, path);
   // if (method === "GET" && path === "/teams" && email) {
   //   const allData  = res.locals.data;
-
 
   // }
   res.json(res.locals.data);
