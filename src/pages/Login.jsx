@@ -23,12 +23,12 @@ const Login = () => {
       password,
     });
 
-    console.log({ response: response.data.data });
-
-    if (response.data.data.accessToken) {
-      navigate("/home/teams");
-    } else if (response.error) {
+    console.log({ response: response, error: response?.error });
+    if (response.error) {
       setError(response.error.data.message);
+    }
+    if (response?.data?.data?.accessToken) {
+      navigate("/home/teams");
     }
   };
 
