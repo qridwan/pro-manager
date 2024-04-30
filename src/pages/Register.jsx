@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Error from "../components/ui/Error";
-import { useLoginMutation } from "../features/auth/authApi";
+import {
+  useLoginMutation,
+  useRegisterMutation,
+} from "../features/auth/authApi";
 import logoImage from "../assets/logo/logo.svg";
 
-const Login = () => {
+const Register = () => {
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
-  const [login, { isLoading }] = useLoginMutation();
+  const [register, { isLoading }] = useRegisterMutation();
 
   const navigate = useNavigate();
 
@@ -18,9 +21,10 @@ const Login = () => {
 
     setError("");
 
-    const response = await login({
+    const response = await register({
       email,
       password,
+      name,
     });
 
     console.log({ response: response, error: response?.error });
@@ -45,12 +49,28 @@ const Login = () => {
               />
             </Link>
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              Sign in to your account
+              Create new account
             </h2>
           </div>
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <div className="rounded-md shadow-sm -space-y-px">
-              <div>
+              <di className="my-2">
+                <label htmlFor="name-address" className="text-gray-500 my-1">
+                  Name :
+                </label>
+                <input
+                  id="name-address"
+                  name="name"
+                  type="text"
+                  autoComplete="name"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
+                  placeholder="Your Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </di>
+              <div className="my-2">
                 <label htmlFor="email-address" className="text-gray-500 my-1">
                   Email address :
                 </label>
@@ -66,7 +86,7 @@ const Login = () => {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <div>
+              <div className="my-2">
                 <label htmlFor="password" className="text-gray-500 my-1">
                   Password :
                 </label>
@@ -87,10 +107,10 @@ const Login = () => {
             <div className="flex items-center justify-end">
               <div className="text-sm">
                 <Link
-                  to="/register"
+                  to="/"
                   className="font-medium text-violet-600 hover:text-violet-500"
                 >
-                  Register
+                  Login
                 </Link>
               </div>
             </div>
@@ -101,29 +121,10 @@ const Login = () => {
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
                 disabled={isLoading}
               >
-                {isLoading ? "Please Wait..." : "Sign in"}
+                {isLoading ? "Please Wait..." : "Sign up"}
               </button>
             </div>
             {error !== "" && <Error message={error} />}
-            <div>
-              <h3 className="text-xl text-center font-bold text-gray-600 py-2">
-                some users cred{" "}
-              </h3>
-              <table className="">
-                <tr>
-                  <th>Email</th>
-                  <th>Pass</th>
-                </tr>
-                <tr>
-                  <td>rid1@gmail.com</td>
-                  <td>rid1@123</td>
-                </tr>
-                <tr>
-                  <td>any@gmail.com</td>
-                  <td>any@123</td>
-                </tr>
-              </table>
-            </div>
           </form>
         </div>
       </div>
@@ -131,4 +132,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

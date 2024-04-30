@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo/logo.svg";
 import { userLoggedOut } from "../../features/auth/authSlice";
 import { useSearchProjectsQuery } from "../../features/projects/projectsApi";
@@ -14,6 +14,7 @@ const Header = () => {
     user: { email },
   } = auth || {};
   const location = useLocation();
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [isSearch, setIsSearch] = useState(false);
   const dispatch = useDispatch();
@@ -61,7 +62,11 @@ const Header = () => {
 
   return (
     <div className="flex items-center flex-shrink-0 w-full h-16 px-10 bg-white bg-opacity-75">
-      <img src={Logo} className="h-10 w-10" />
+      <img
+        onClick={() => navigate("/home/teams")}
+        src={Logo}
+        className="h-10 w-10"
+      />
       {!isTeam && (
         <input
           onChange={(e) => handleQueryTeam(e.target.value)}

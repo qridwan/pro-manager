@@ -13,8 +13,8 @@ const SelectMemberAutoComplete = ({
     query === ""
       ? suggestions
       : suggestions?.filter((obj) =>
-          obj.name
-            .toLowerCase()
+          obj?.name
+            ?.toLowerCase()
             .replace(/\s+/g, "")
             .includes(query.toLowerCase().replace(/\s+/g, ""))
         );
@@ -31,7 +31,9 @@ const SelectMemberAutoComplete = ({
             )}
             <Combobox.Input
               className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-              displayValue={(selected) => selected ? `${selected?.email}(${selected?.name})` : ''}
+              displayValue={(selected) =>
+                selected ? `${selected?.email}(${selected?.name})` : ""
+              }
               onChange={(event) => setQuery(event.target.value)}
             />
             <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2"></Combobox.Button>

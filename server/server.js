@@ -3,24 +3,43 @@ const jsonServer = require("json-server");
 const express = require("express");
 const http = require("http");
 const cors = require("cors");
+const fs = require("fs");
 const app = express();
 const server = http.createServer(app);
 
-const router = jsonServer.router("/db.json");
+const filePath = "/db.json";
+
+let router;
+
+// Read the JSON file asynchronously
+fs.readFile(filePath, "utf8", (err, data) => {
+  if (err) {
+    console.error("Error reading file:", err);
+    return;
+  }
+
+  // Parse the JSON data
+  try {
+    const jsonData = JSON.parse(data);
+    router = jsonServer.router(jsonData);
+    // console.log("JSON data:", jsonData);
+  } catch (parseError) {
+    console.error("Error parsing JSON:", parseError);
+  }
+});
 
 // response middleware
-router.render = (req, res) => {
-  const email = req.claims.email;
-  const path = req.path;
-  const method = req.method;
-  console.log("email: method: path ", email, method, path);
-  // console.log("method: ", method, path);
-  // if (method === "GET" && path === "/teams" && email) {
-  //   const allData  = res.locals.data;
+if (router) {
+  router.render = (req, res) => {
+    console.log("req: ", { req: req.body.email });
+    const email = req?.body?.email;
+    const path = req.path;
+    const method = req.method;
+    console.log("email: method: path ", email, method, path);
 
-  // }
-  res.json(res.locals.data);
-};
+    res.json(res.locals.data);
+  };
+}
 
 const middlewares = jsonServer.defaults();
 const port = process.env.PORT || 9000;

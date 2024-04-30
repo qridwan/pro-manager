@@ -1,40 +1,16 @@
 {
   "users": [
     {
+      "email": "any@gmail.com",
+      "password": "$2a$10$DnJDe21jwZcFV0IATiN6zuUqciUqCuEm97ZZ4a2jHedR.5EIGF8dm",
+      "id": 7,
+      "name": "Any doe"
+    },
+    {
       "email": "rid1@gmail.com",
-      "password": "$2a$10$TFsJGTUcVCVwujCqws3ZU.J5r7EbFlKC6vQu6vLlz84NqwFjXIkUO",
-      "name": "rid1",
-      "id": 1
-    },
-    {
-      "email": "rid2@gmail.com",
-      "password": "$2a$10$TFsJGTUcVCVwujCqws3ZU.J5r7EbFlKC6vQu6vLlz84NqwFjXIkUO",
-      "name": "rid2",
-      "id": 2
-    },
-    {
-      "email": "rid3@gmail.com",
-      "password": "$2a$10$TFsJGTUcVCVwujCqws3ZU.J5r7EbFlKC6vQu6vLlz84NqwFjXIkUO",
-      "name": "rid3",
-      "id": 3
-    },
-    {
-      "email": "rid4@gmail.com",
-      "password": "$2a$10$TFsJGTUcVCVwujCqws3ZU.J5r7EbFlKC6vQu6vLlz84NqwFjXIkUO",
-      "name": "rid4",
-      "id": 4
-    },
-    {
-      "email": "rid5@gmail.com",
-      "password": "$2a$10$TFsJGTUcVCVwujCqws3ZU.J5r7EbFlKC6vQu6vLlz84NqwFjXIkUO",
-      "name": "rid5",
-      "id": 5
-    },
-    {
-      "email": "rid6@gmail.com",
-      "password": "$2a$10$TFsJGTUcVCVwujCqws3ZU.J5r7EbFlKC6vQu6vLlz84NqwFjXIkUO",
-      "name": "rid6",
-      "id": 6
+      "password": "$2a$10$dQ9T8jIE8qBiAOSAhHS8keJOAlzuoIkvUAHo9TMlpcvvSp8JudQHm",
+      "id": 8,
+      "name": "Ridwan Alam"
     }
   ],
   "teams": [
@@ -122,7 +98,8 @@
       "members": [
         "rid1@gmail.com",
         "rid6@gmail.com",
-        "rid4@gmail.com"
+        "rid4@gmail.com",
+        "any@gmail.com"
       ],
       "description": "aaa",
       "timestamp": 1664139721286,
@@ -140,6 +117,18 @@
       "timestamp": 1664534173149,
       "color": "#dc8add",
       "id": 14
+    },
+    {
+      "name": "BE team",
+      "uid": "be team",
+      "members": [
+        "any@gmail.com",
+        "rid4@gmail.com"
+      ],
+      "description": "Backend Team",
+      "timestamp": 1714486000590,
+      "color": "#ff40ff",
+      "id": 15
     }
   ],
   "projects": [
@@ -187,7 +176,7 @@
         "rid1@gmail.com"
       ],
       "name": "sdf",
-      "status": "backlog",
+      "status": "ready",
       "id": 3
     },
     {
@@ -202,8 +191,34 @@
         "rid5@gmail.com"
       ],
       "name": "Oxy team",
-      "status": "ready",
+      "status": "doing",
       "id": 4
+    },
+    {
+      "author": "any@gmail.com",
+      "color": "#ff40ff",
+      "teamId": "be team",
+      "title": "test",
+      "timestamp": 1714486199505,
+      "members": [
+        "any@gmail.com"
+      ],
+      "name": "BE team",
+      "status": "ready",
+      "id": 5
+    },
+    {
+      "author": "any@gmail.com",
+      "color": "#ff40ff",
+      "teamId": "be team",
+      "title": "RIdwan Alam",
+      "timestamp": 1714486259151,
+      "members": [
+        "any@gmail.com"
+      ],
+      "name": "BE team",
+      "status": "backlog",
+      "id": 6
     }
   ]
 }

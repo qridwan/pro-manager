@@ -3,6 +3,7 @@
   "description": "pro manager api with json-server by thisisrid",
   "version": "1.0.0",
   "main": "server.js",
+  "license": "MIT",
   "scripts": {
     "start": "node server.js"
   },

@@ -21,13 +21,14 @@ const TeamList = ({ teams }) => {
         .slice()
         .sort((a, b) => b.timestamp - a.timestamp)
         .map((team) => {
+          console.log("team: ", team);
           const date = moment(team.timestamp).format("MMM Do YY");
-          // console.log(`bg-[${team.color}]`);
+          //   console.log(`bg-[${team.color}]`);
           const color = team.color;
           return (
             <div
               key={team.uid}
-              className="relative flex flex-col items-start p-4 mt-3 bg-white rounded-lg cursor-pointer bg-opacity-90 group hover:bg-opacity-100"
+              className="relative flex flex-col items-start p-4 mt-3 border-gray-500 border-spacing-1 bg-[#0070ff1a] rounded-lg cursor-pointer  group hover:bg-opacity-100"
               draggable="true"
             >
               <div className="absolute top-0 right-0">
@@ -57,7 +58,7 @@ const TeamList = ({ teams }) => {
                 )}
                 style={{
                   backgroundColor: color + 20,
-                  color: color,
+                  color: `${color}`,
                 }}
               >
                 {team.name}
@@ -84,16 +85,24 @@ const TeamList = ({ teams }) => {
                     ?.slice(0, 3)
                     .sort()
                     .map((email) => (
-                      <img
-                        key={email}
-                        className="inline-block h-6 w-6 rounded-full ring-2 ring-white"
-                        src={gravatarUrl(email, {})}
-                        alt="mail"
-                        title={email}
-                      />
+                      <div className="">
+                        {/* // avatar div tailwind */}
+                        <div className="flex items-center justify-center h-6 w-6 rounded-full bg-gray-500">
+                          <span className="text-xs font-semibold text-white">
+                            {email[0].toUpperCase()}
+                          </span>
+                        </div>
+                      </div>
+                      //   <img
+                      //     key={email}
+                      //     className="inline-block h-6 w-6 rounded-full ring-2 ring-white"
+                      //     src={gravatarUrl(email, {})}
+                      //     alt="mail"
+                      //     title={email}
+                      //   />
                     ))}
                   {team.members.length > 3 && (
-                    <span className="inline-block h-4 w-12 rounded-full ring-2 ring-white bg-white font-bold text-md">
+                    <span className="inline-block h-4 w-12 rounded-full ring-0 bg-inherit font-bold text-md pl-2">
                       +{team.members.length - 3} more
                     </span>
                   )}
