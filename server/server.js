@@ -7,9 +7,10 @@ const fs = require("fs");
 const app = express();
 const server = http.createServer(app);
 
-const filePath = "/db.json";
+const filePath = "db.json";
 
-let router;
+let router = jsonServer.router("db.json");
+console.log("router: ", router);
 
 // Read the JSON file asynchronously
 fs.readFile(filePath, "utf8", (err, data) => {
@@ -21,25 +22,22 @@ fs.readFile(filePath, "utf8", (err, data) => {
   // Parse the JSON data
   try {
     const jsonData = JSON.parse(data);
-    router = jsonServer.router(jsonData);
-    // console.log("JSON data:", jsonData);
+    router = jsonServer.router("db.json");
   } catch (parseError) {
     console.error("Error parsing JSON:", parseError);
   }
 });
 
 // response middleware
-if (router) {
-  router.render = (req, res) => {
-    console.log("req: ", { req: req.body.email });
-    const email = req?.body?.email;
-    const path = req.path;
-    const method = req.method;
-    console.log("email: method: path ", email, method, path);
+router.render = (req, res) => {
+  console.log("req: ", { req: req.body.email });
+  const email = req?.body?.email;
+  const path = req.path;
+  const method = req.method;
+  console.log("email: method: path ", email, method, path);
 
-    res.json(res.locals.data);
-  };
-}
+  res.json(res.locals.data);
+};
 
 const middlewares = jsonServer.defaults();
 const port = process.env.PORT || 9000;
